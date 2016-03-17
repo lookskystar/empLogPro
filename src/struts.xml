@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+    
+    <struts>
+    	<constant name="struts.i18n.encoding" value="UTF-8"/> 
+    	 <!--该属性指定需要struts2处理的请求后缀，该属性的默认值是action,即所有匹配*.action的请求都由struts2处理 。如果用户需要指定多个请求后缀，则后缀之间用英文逗号（，）隔开-->
+		 <constant name="struts.action.extension" value="do,action,jaction" />
+		 <!-- 国际化属性配置 -->
+		 <constant name="struts.custom.i18n.resources" value="ApplicationResources"></constant>
+		 <!-- 默认的视图主题 --> 	
+		 <constant name="struts.ui.theme" value="simple" />
+		 <!-- struts上传的最大值限制，可自己配置 -->
+		 <constant name="struts.multipart.maxSize" value="1024000000000"/> 
+    	
+        <!-- admin -->
+    	<package name="empLogssh2_admin" extends="struts-default">
+    		<action name="saveAdmin" class="saveAdminAction">
+    			<result name="success" type="redirect">
+    				listAdmin.action
+    			</result>
+    		</action>
+    		
+    		<action name="listAdmin" class="listAdminAction">
+    			<result name="success">/web/admin/listAdmin.jsp</result>
+    		</action>
+    		
+    		<action name="removeAdmin" class="removeAdminAction">
+    			<result name="success" type="redirect">
+    				listAdmin.action
+    			</result>
+    		</action>
+    		
+    		<action name="findAdminByAdminId" class="findAdminByAdminIdAction">
+    			<result name="success">
+    				/web/admin/updateAdmin.jsp
+    			</result>
+    		</action>
+    		
+    		<action name="updateAdmin" class="updateAdminAction">
+    			<result name="success" type="redirect">
+    				listAdmin.action
+    			</result>
+    		</action>
+    		
+    		<action name="findAdminByAdminNameAndAdminPassword" class="findAdminByAdminNameAndAdminPasswordAction">
+    			<result name="success" type="redirect">
+    				listAdmin.action
+    			</result>
+    		</action>
+    		
+    		
+    	</package>
+    	
+    	<!-- dep -->
+    	<package name="empLogssh2_dep" extends="struts-default">	  
+    		<action name="saveDep" class="saveDepAction">
+    			<result name="success" type="redirect">
+    				listDep.action
+    			</result>
+    		</action>
+    		
+    		<action name="listDep" class="listDepAction">
+    			<result name="success">
+    				/web/dep/listDep.jsp
+    			</result>
+    		</action>
+    		
+    		<action name="removeDep" class="removeDepAction">
+    			<result name="success" type="redirect">
+    				listDep.action
+    			</result>
+    			<result name="listEmp">
+    				/web/emp/listEmp.jsp
+    			</result>
+    		</action>
+    		
+    		<action name="findDepByDepId" class="findDepByDepIdAction">
+    			<result name="success">
+    				/web/dep/updateDep.jsp
+    			</result>
+    		</action>
+    		
+    		<action name="updateDep" class="updateDepAction">
+    			<result name="success" type="redirect">
+    				listDep.action
+    			</result>
+    		</action>
+    	</package>
+    	
+    	<!-- emp -->
+    	<package name="empLogssh2_emp" extends="struts-default">	 
+    		<!-- 查询所有部门，并到保存员工页面 -->
+    		<action name="saveEmpView" class="saveEmpViewAction">
+    			<result name="success">
+    				/web/emp/insertEmp.jsp
+    			</result> 
+    		</action>
+    		
+    		<action name="saveEmp" class="saveEmpAction">
+    			<result name="success" type="redirect">
+    				listEmp.action
+    			</result>
+    			<result name="error" type="chain">
+	    			<param name="actionName">saveEmpView</param>
+	    			<param name="msg">${msg}</param>
+	    		</result> 
+    		</action>
+    		
+    		<action name="listEmp" class="listEmpAction">
+    			<result name="success">
+    				/web/emp/listEmp.jsp
+    			</result>
+    		</action>
+    		<action name="removeEmp" class="removeEmpAction">
+    			<result name="success" type="redirect">
+    				listEmp.action
+    			</result>
+    		</action>
+    		<action name="findEmpByEmpId" class="findEmpByEmpIdAction">
+    			<result name="success">
+    				/web/emp/updateEmp.jsp
+    			</result>
+    		</action>
+    		<action name="updateEmp" class="updateEmpAction">
+    			<result name="success" type="redirect">
+    				listEmp.action
+    			</result>
+    		</action>
+    		<action name="listEmpPaging" class="listEmpPagingAction">
+    			<result name="success">
+    				<!-- /web/error/error.jsp -->
+    				/web/emp/listEmp.jsp
+    			</result>
+    		</action>
+    		
+    		<action name="findEmpByEmpNameAndEmpPassword" class="findEmpByEmpNameAndEmpPasswordAction">
+    			<result name="success">
+    			   <!-- 成功  跳到员工写日志页面 -->
+    				<!--  /web/logMessage/insertLogMessage.jsp-->
+    				/web/index.jsp
+    			</result>
+    			<result name="error">
+    			    <!--失败  跳失败页面 -->
+    				/web/error/error.jsp
+    			</result>
+    		</action>
+    	</package>
+    	
+    	<!--empCheckLogEmail  -->
+    	<package name="empLogssh2_empCheckLogEmail" extends="struts-default">	 
+    		<action name="assignEmpEmail" class="findDepEmpToAssigEmpEmailJspAction">
+    			<result name="success">
+    				<!-- /web/error/error.jsp -->
+    				/web/empCheckLogEmail/assignEmpEmail.jsp
+    			</result>
+    		</action>
+    		<action name="saveEmpCheckLogEmail" class="saveEmpCheckLogEmailAction">
+    			<result name="success" type="redirect">
+    				assignEmpEmail.action
+    			</result>
+    		</action>
+    		<action name="saveOrUpdateEmpCheckLogEmail" class="saveOrUpdateEmpCheckLogEmailAction">
+    			<result name="success" type="redirect">
+    				assignEmpEmail.action
+    			</result>
+    		</action>
+    		<action name="removeEmpCheckLogEmail" class="removeEmpCheckLogEmailAction">
+    			<result name="success" type="redirect">
+    				assignEmpEmail.action
+    			</result>
+    		</action>
+    	</package>
+    	
+    	<package name="empLogssh2_logMessage" extends="struts-default">	 
+    		<action name="saveLogMessage" class="saveLogMessageAction">
+    		  
+	    		<!--  action之间传值方法1
+	    		<result name="success" type="redirect">
+	    			listLogMessageByLogMessageEmpId.action?logMessage.emp.empId=${logMessage.emp.empId}
+	    		</result> 
+	    		-->
+	    		 
+	    		<result name="success" type="redirectAction">
+	    			<param name="actionName">listLogMessageByLogMessageEmpIdPaging</param>
+	    			<param name="logMessage.emp.empId">${logMessage.emp.empId}</param>
+	    		</result> 
+    		</action>
+    		
+    		<!--  
+    		<action name="listLogMessageByLogMessageEmpId" class="listLogMessageByLogMessageEmpIdAction">
+    			<result name="success" >
+    				/web/logMessage/listlogMessage.jsp
+    			</result>
+    		</action>
+    		-->
+    		<action name="listLogMessageByLogMessageEmpIdPaging" class="listLogMessageByLogMessageEmpIdPagingAction">
+    			<result name="success" >
+    				/web/logMessage/listlogMessage.jsp
+    			</result>
+    		</action>
+    		
+    		<action name="removeLogMessage" class="removeLogMessageAction">
+    			<result name="success" type="redirectAction">
+	    			<param name="actionName">listLogMessageByLogMessageEmpIdPaging</param>
+	    			<param name="logMessage.emp.empId">${logMessage.emp.empId}</param>
+	    		</result> 
+	    		<!--<result name="success" type="redirect">
+    				/web/error/error.jsp
+    			</result>-->
+    		</action>
+    		
+    		<action name="findByLogMessageId" class="findByLogMessageIdAction">
+    			<result name="success">
+	    			/web/logMessage/logMessageContent.jsp
+	    		</result> 
+    		</action>
+    
+    		<action name="findAllByLogMessageLikeTitle" class="findAllByLogMessageLikeTitleAction">
+    			<result name="success">
+	    			/web/logMessage/listlogMessageQuery.jsp
+	    		</result> 
+    		</action>
+    		
+    		<action name="findAllByLogMessageByStarTiemAndEndTime" class="findAllByLogMessageByStarTiemAndEndTimeAction">
+    			<result name="success">
+	    			/web/logMessage/listlogMessageQuery.jsp
+	    		</result> 
+    		</action>
+    		
+    	</package>
+    	
+    	<package name="empLogssh2_receiveLog" extends="struts-default">	 
+    		<action name="saveReceiveLog" class="saveReceiveLogAction">
+    			<result name="success" type="redirect">
+    				listEmp.action
+    			</result>
+    		</action>
+    	</package>
+    	
+    	<!--在线聊天  直接调用action类 -->
+    	<package name="empLogssh2_chat" extends="struts-default">
+    		<action name="chat" class="com.emplog.action.chat.ChatAction">
+    			<result name="success" type="redirect">
+    				/web/chat/chat.jsp
+    			</result>
+    		</action>
+    	</package>
+    	
+    	<!--群发送邮件 -->
+    	<package name="empLogssh2_mail" extends="struts-default">
+    		<action name="mailSender" class="mailSenderAction">
+    			<result name="success">
+    				/web/mail/sendStatic.jsp
+    			</result>
+    			<!--<result name="none" />-->
+    			<result name="error">
+    				/web/mail/mailPage.jsp
+    			</result>
+    		</action>
+    		<!-- 测试 到mailPage.jsp -->
+    		<action name="mailPage" class="mailPageAction">
+    			<result name="success">
+    				/web/mail/mailPage.jsp
+    			</result>
+    		</action>
+    	</package>
+    	
+    	
+ <!-- 上传 开始  mail -->
+	     <package name="empLogssh2_Upload" extends="struts-default">
+			<action name="mailUpload" class="com.emplog.action.mail.MailUploadAction" method="uploadFileing">
+				<result name="success">
+					/web/mail/mailPage.jsp
+				</result>
+			</action>
+	     </package>
+<!--  上传  结束 mail-->
+
+	
+	 <!-- 统计打开率测试action -->
+	 <package name="empLogssh2_Test" extends="struts-default">
+			<action name="testUrl" class="com.emplog.action.mail.TestAction">
+				<result name="success">
+
+				</result>
+			</action>
+	     </package>
+
+
+
+    	
+    </struts>

@@ -1,0 +1,199 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/*主页*/
+html {
+	height: 100%;
+	/*background-color:Red;*/
+}
+body {
+	font:normal 12px 宋体;
+	height: 100%;
+	margin: 0px auto;
+	padding: 0px;
+	font-size: 12px;
+	border:0px #4395de solid;
+}
+strong{
+	font-weight: bold;
+}
+table {
+	border:0px;
+}
+td {
+	font:normal 12px 宋体;
+}
+img {
+	vertical-align:bottom;
+	border:0px;
+}
+
+a {
+	font:normal 12px 宋体;
+	font-weight:bold;
+	color:#000000;
+	text-decoration:none;
+}
+a:hover {
+	color:#428EFF;
+	text-decoration:underline;
+}
+
+
+.mainClass{
+	height:100%;
+}
+	
+.mainContentDivClass {
+	width: 100%;
+	height: 90%;
+	margin: 0px auto;
+	/*  margin:0px;
+ padding:0px;
+border:1px #1105fc solid;
+border:1px black solid;*/
+}
+
+.leftDivClass {
+	border: 1px #FF0000 solid;
+	width: 150px;
+	height: 100%;
+	float: left;
+	font-size: 12px;
+	background:url('/empLogssh2/img/left.gif') no-repeat right bottom;
+}
+
+.rightDivClass {
+	border: 1px #0000FF solid;
+	/*border-right:0px;*/ /*width:800px;*/
+	height: 100%;
+	margin-left: 160px;
+	font-size: 12px;
+}
+
+.leftTopDivClass {
+	border-bottom: 5px #4395de
+	 solid;
+	height: 152px;
+	margin-top: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
+	font-size: 12px;
+}
+
+.rightTopDivClass {
+	border: 1px #33FF00 solid;
+	/*width:780px;*/
+	height: 45px;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-top: 5px;
+	padding-left: 5px;
+	font-size: 12px;
+}
+
+.footDivClass {
+	border: 1px #00FFFF solid;
+	height:8%;
+	margin-top: 10px;
+}
+
+.contentIframeClass{
+	margin-left: 10px;
+	margin-top: 10px;
+	border: 0px
+}
+
+
+
+/*显示logMessage列表*/
+.listHeaderTdClass{
+	font-size: 14px;
+	background-color: #bcd8f8;
+	
+}
+.listValueAClass{
+	color:#406fa5;
+}
+.listValueADelClass{
+	color:red;
+}
+
+
+/*显示logMessage内容*/
+.logMessageDivClass{
+	border: 1px #4395de solid;
+	width: 100%;
+	height:200px;
+	/*div滚动条*/
+	overflow-y:auto; overflow-x:hidden;
+}
+.logContTileStrongClass{
+	font-size: 16px;
+}
+
+
+.mainDivClass{
+border:3px #0000FF double;
+width:230px;
+}
+
+.receiveClass{
+border:1px #FF0000 solid;
+width:300px;
+height:550px;
+float:left;
+}
+
+
+.sendClass{
+border:1px #FF0000 solid;
+width:300px;
+height:550px;
+margin-left:5px;
+float:left;
+}
+
+.fatherClass{
+width:295px;
+height:50px;
+background-color:#0099FF;
+}
+
+.receTdClass{
+border-left:1px #FF0000 solid;
+border-right:1px #FF0000 solid;
+}
+.sendTdClass{
+border-left:1px #FF0000 solid;
+border-right:1px #FF0000 solid;
+}
+
+
+/*insertEmpInfo.html*/
+.insertEmpDivClass{
+line-height:30px;
+letter-spacing:2px;
+
+}
+.errorStrClass{
+border:1px #0000FF dotted; 
+width:30px; 
+height:15px; 
+font-size:12px; 
+color:#FF0000;
+}
+
+
+/*adminManage.html*/
+
+/*tab*/
+/*ul,li{list-style:none; margin:0; padding:0;}
+.tab{border:1px solid #000; border-top:0; width:500px; margin:100px;}
+.tabTitle{color:#666; font-size:14px; font-weight:bold; overflow:hidden; zoom:1;}
+.tabTitle li{float:left; width:80px; height:28px; line-height:28px; text-align:center; border:1px solid #000; border-right:0; margin-left:-1px;}
+.tabTitle li.tabin{border-bottom:0 none; height:29px; background:#eee;}
+.hide{display:none;}
+.tabContent{background:#eee;}*/

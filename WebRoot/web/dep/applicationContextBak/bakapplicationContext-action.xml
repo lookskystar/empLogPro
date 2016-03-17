@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+		<!-- action配置 -->
+		<!-- admin  -->
+		<!-- 添加admin  -->
+		<bean id="saveAdminAction" class="com.emplog.action.admin.SaveAdminAction" scope="prototype">
+			<property name="service" ref="adminService"></property>
+		</bean>
+		<!-- 显示admin的list-->
+		<bean id="listAdminAction" class="com.emplog.action.admin.ListAdminAction" scope="prototype">
+			<property name="service" ref="adminService"></property>
+		</bean>
+		<!-- 根据id删除admin-->
+		<bean id="removeAdminAction" class="com.emplog.action.admin.RemoveAdminAction" scope="prototype">
+			<property name="service" ref="adminService"></property>
+		</bean>
+		<!--根据id查找admin-->
+		<bean id="findAdminByAdminIdAction" class="com.emplog.action.admin.FindAdminByAdminIdAction">
+			<property name="service" ref="adminService"></property>
+		</bean>
+		<!-- 修改admin -->
+		<bean id="updateAdminAction" class="com.emplog.action.admin.UpdateAdminAction" scope="prototype">
+			<property name="service" ref="adminService"></property>
+		</bean>
+		
+		<!-- dep -->
+		<!-- 添加dep-->
+		<bean id="saveDepAction" class="com.emplog.action.dep.SaveDepAction" scope="prototype">
+				<property name="service" ref="depService"></property>
+		</bean> 
+		<!-- 显示dep  list-->
+		<bean id="listDepAction" class="com.emplog.action.dep.ListDepAction" scope="prototype">
+				<property name="service" ref="depService"></property>
+		</bean> 
+		<!-- 删除dep  -->
+		<bean id="removeDepAction" class="com.emplog.action.dep.RemoveDepAction" scope="prototype">
+				<property name="service" ref="depService"></property>
+		</bean> 
+		<!--根据id查找dep-->
+		<bean id="findDepByDepIdAction" class="com.emplog.action.dep.FindDepByDepIdAction">
+			<property name="service" ref="depService"></property>
+		</bean>
+		<!-- 修改dep -->
+		<bean id="updateDepAction" class="com.emplog.action.dep.UpdateDepAction" scope="prototype">
+			<property name="service" ref="depService"></property>
+		</bean>
+		
+</beans>

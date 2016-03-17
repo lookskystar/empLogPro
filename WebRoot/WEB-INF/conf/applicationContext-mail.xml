@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+<!-- 单一属性（配置properties文件） 
+<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<property name="location" value="jdbc.properties" /> 注意这里的路径问题,这里是放在src下. 
+</bean>
+
+org.springframework.mail.javamail.JavaMailSenderImpl
+-->
+<!-- 发送邮件服务器设置 -->
+  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        
+        <property name="protocol" value="${mail.protocol}"/>
+        <property name="host" value="${mail.host}" />
+        <property name="username" value="${mail.username}" />
+        <property name="password" value="${mail.password}" />
+        
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.timeout">25000</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop> 
+			   <!--  <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop> gmail要求的ssl连接 -->
+            </props>
+        </property>
+        
+    </bean>
+    
+	<!-- 多线程并发设置 -->
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<!-- 核心线程数，默认为1 -->
+		<property name="corePoolSize" value="10"/>
+		<!-- 最大线程数，默认为Integer.MAX_VALUE --> 
+		<property name="maxPoolSize" value="30"/>
+		    <!-- 队列最大长度，一般需要设置值>=notifyScheduledMainExecutor.maxNum；默认为Integer.MAX_VALUE -->           
+    	<property name="queueCapacity" value="1000" /> 
+    	 <!-- 线程池维护线程所允许的空闲时间，默认为60s -->           
+    	<property name="keepAliveSeconds" value="300" /> 
+    	<!-- 线程池对拒绝任务（无线程可用）的处理策略，目前只支持AbortPolicy、CallerRunsPolicy；默认为后者 -->           
+    	<property name="rejectedExecutionHandler">           
+    	<!-- AbortPolicy:直接抛出java.util.concurrent.RejectedExecutionException异常 -->           
+        <!-- CallerRunsPolicy:主线程直接执行该任务，执行完之后尝试添加下一个任务到线程池中，可以有效降低向线程池内添加任务的速度 -->           
+        <!-- DiscardOldestPolicy:抛弃旧的任务、暂不支持；会导致被丢弃的任务无法再次被执行 -->           
+        <!-- DiscardPolicy:抛弃当前任务、暂不支持；会导致被丢弃的任务无法再次被执行 -->  
+    	     <bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />           
+   		 </property>   
+	</bean>
+	
+	<!-- 发送主程序bean-->
+	<bean id="springMailServiceImpl" class="com.emplog.util.springMail.SpringMailServiceImpl"></bean>
+	
+	<!-- 读取txt文档email地址bean-->
+	<bean id="readTxt" class="com.emplog.util.springMail.ReadTxt"></bean>
+	
+	<!-- 读html文件，替换标记，个性化 -->
+	<bean id="individualiyHtmlTemplate" class="com.emplog.util.springMail.IndividualiyHtmlTemplate"></bean>
+	
+	<!-- 写txt文档email地址bean-->
+	<bean id="writeTxt" class="com.emplog.util.springMail.WriteTxt"></bean>
+	
+	
+	<!--测试                        注入读写.properties配置文件类 -->
+	<bean id="getSetProperties" class="com.emplog.util.properties.GetSetProperties"></bean>
+	
+	
+     <!--  多线程发送邮件bean 注入 taskExecutor，mailSender readTxt springMailServiceImpl-->    
+	<bean id="startMailSender" class="com.emplog.util.springMail.StartMailSender">     
+	      <property name="taskExecutor" ref="taskExecutor" />  
+	      <property name="sender" ref="mailSender" />
+	      
+	      <property name="readTxt" ref="readTxt"></property> 
+	      <property name="springMailServiceImpl" ref="springMailServiceImpl"></property> 
+	      <property name="individualiyHtmlTemplate" ref="individualiyHtmlTemplate"></property>
+	      <property name="writeTxt" ref="writeTxt"></property>
+	</bean>
+</beans>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="empLogssh2_admin" location="0,0" size="0,0">
+    <action name="saveAdmin" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="listAdmin" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="removeAdmin" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="findAdminByAdminId" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="updateAdmin" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+  </package>
+  <package name="empLogssh2_dep" location="0,0" size="0,0">
+    <action name="saveDep" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="listDep" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="removeDep" location="0,0" size="0,0">
+      <result name="success" />
+      <result name="listEmp" />
+    </action>
+    <action name="findDepByDepId" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="updateDep" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+  </package>
+  <package name="empLogssh2_emp" location="0,0" size="0,0">
+    <action name="saveEmpView" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="saveEmp" location="0,0" size="0,0">
+      <result name="success" />
+      <result name="error" />
+    </action>
+    <action name="listEmp" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="removeEmp" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="findEmpByEmpId" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="updateEmp" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="listEmpPaging" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="finEmpByEmpNameAndEmpPassword" location="0,0" size="0,0">
+      <result name="success" />
+      <result name="error" />
+    </action>
+  </package>
+  <package name="empLogssh2_empCheckLogEmail" location="0,0" size="0,0">
+    <action name="assignEmpEmail" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="saveEmpCheckLogEmail" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="saveOrUpdateEmpCheckLogEmail" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="removeEmpCheckLogEmail" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+  </package>
+  <package name="empLogssh2_logMessage" location="0,0" size="0,0">
+    <action name="saveLogMessage" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="listLogMessageByLogMessageEmpIdPaging" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="removeLogMessage" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="findByLogMessageId" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="findAllByLogMessageLikeTitle" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="findAllByLogMessageByStarTiemAndEndTime" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+  </package>
+  <package name="empLogssh2_receiveLog" location="0,0" size="0,0">
+    <action name="saveReceiveLog" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+  </package>
+</Struts2Diagram>
+

@@ -1,0 +1,22 @@
+#
+#Fri Sep 23 10:33:15 CST 2011
+genBasicCompId=true
+sessionFactoryName=
+profile=
+daoSFId=
+version=3.1
+jndiPath=
+detectM2M=true
+reStrategyClass=
+springDaoFile=
+useJavaTypes=true
+keyGenerator=native
+libInstallFolder=
+addLibs2Project=false
+genVersionTag=true
+sessionFactoryId=
+basePersistenceClass=
+reSettingsFile=/empLogssh2/hibernate.reveng.xml
+configFile=/empLogssh2/src/hibernate.cfg.xml
+createConfigFile=true
+addLibs2Classpath=false

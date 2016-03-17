@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+		<!-- action配置 -->
+		<!-- admin  -->
+		<!-- 添加admin  -->
+		<bean id="saveAdminAction" class="com.emplog.action.admin.SaveAdminAction" scope="prototype">
+			<property name="service" ref="adminService"></property>
+		</bean>
+		<!-- 显示admin的list-->
+		<bean id="listAdminAction" class="com.emplog.action.admin.ListAdminAction" scope="prototype">
+			<property name="service" ref="adminService"></property>
+		</bean>
+		<!-- 根据id删除admin-->
+		<bean id="removeAdminAction" class="com.emplog.action.admin.RemoveAdminAction" scope="prototype">
+			<property name="service" ref="adminService"></property>
+		</bean>
+		<!--根据id查找admin-->
+		<bean id="findAdminByAdminIdAction" class="com.emplog.action.admin.FindAdminByAdminIdAction">
+			<property name="service" ref="adminService"></property>
+		</bean>
+		<!-- 修改admin -->
+		<bean id="updateAdminAction" class="com.emplog.action.admin.UpdateAdminAction" scope="prototype">
+			<property name="service" ref="adminService"></property>
+		</bean>
+		<!-- 根据adminName和adminPassword查找admin -->
+		<bean id="findAdminByAdminNameAndAdminPasswordAction" class="com.emplog.action.admin.FindAdminByAdminNameAndAdminPassword">
+			<property name="service" ref="adminService"></property>
+		</bean>
+		
+		
+		
+		<!-- dep -->
+		<!-- 添加dep-->
+		<bean id="saveDepAction" class="com.emplog.action.dep.SaveDepAction" scope="prototype">
+				<property name="service" ref="depService"></property>
+		</bean> 
+		<!-- 显示dep  list-->
+		<bean id="listDepAction" class="com.emplog.action.dep.ListDepAction" scope="prototype">
+				<property name="service" ref="depService"></property>
+		</bean> 
+		<!-- 删除dep  -->
+		<bean id="removeDepAction" class="com.emplog.action.dep.RemoveDepAction" scope="prototype">
+				<property name="depService" ref="depService"></property>
+				<property name="empService" ref="empService"></property>
+		</bean> 
+		<!--根据id查找dep-->
+		<bean id="findDepByDepIdAction" class="com.emplog.action.dep.FindDepByDepIdAction">
+			<property name="service" ref="depService"></property>
+		</bean>
+		<!-- 修改dep -->
+		<bean id="updateDepAction" class="com.emplog.action.dep.UpdateDepAction" scope="prototype">
+			<property name="service" ref="depService"></property>
+		</bean>
+		
+		<!-- emp -->
+		<!-- 添加emp -->
+		<bean id="saveEmpAction" class="com.emplog.action.emp.SaveEmpAction" scope="prototype">
+				<property name="service" ref="empService"></property>
+		</bean> 
+		<!-- 添加emp 到显示页面 -->
+	    <bean id="saveEmpViewAction" class="com.emplog.action.emp.SaveEmpViewAction" scope="prototype">
+				<property name="service" ref="depService"></property>
+		</bean> 
+		<!-- 显示emp list -->
+		<bean id="listEmpAction" class="com.emplog.action.emp.ListEmpAction" scope="prototype">
+			<property name="service" ref="empService"></property>
+		</bean>
+		<!-- 删除emp -->
+		<bean id="removeEmpAction" class="com.emplog.action.emp.RemoveEmpAction" scope="prototype">
+			<property name="service" ref="empService"></property>
+		</bean>
+		<!--id查找emp -->
+		<bean id="findEmpByEmpIdAction" class="com.emplog.action.emp.FindEmpByEmpIdAction">
+			<property name="empService" ref="empService"></property>
+			<property name="depService" ref="depService"></property>
+		</bean>
+		<!--修改emp -->
+		<bean id="updateEmpAction" class="com.emplog.action.emp.UpdateEmpAction">
+			<property name="service" ref="empService"></property>
+		</bean>
+		<!-- 显示emp 分页 list -->
+		<bean id="listEmpPagingAction" class="com.emplog.action.emp.ListEmpPagingAction" scope="prototype">
+			<property name="service" ref="empService"></property>
+		</bean>
+		
+
+		<!-- 通过empName和empPassword查找emp基本信息（员工登陆验证）--> 
+		<bean id="findEmpByEmpNameAndEmpPasswordAction" class="com.emplog.action.emp.FindEmpByEmpNameAndEmpPasswordAction">
+			<property name="service" ref="empService"></property>
+		</bean>
+		
+
+		<!-- empCheckLogEmail -->
+		<!-- 查找Dep and Emp到assigEmpEmail.Jsp页面显示 -->
+		<bean id="findDepEmpToAssigEmpEmailJspAction" class="com.emplog.action.empCheckLogEmail.FindDepEmpToAssigEmpEmailJspAction" scope="prototype">
+			<property name="depService" ref="depService"></property>
+			<property name="empService" ref="empService"></property> 
+			<property name="empCheckLogEmailService" ref="empCheckLogEmailService"></property>
+		</bean>
+		<!-- 保存EmpCheckLogEmail -->
+		<bean id="saveEmpCheckLogEmailAction" class="com.emplog.action.empCheckLogEmail.SaveEmpCheckLogEmailAction" scope="prototype">
+		    <property name="service" ref="empCheckLogEmailService"></property>
+		</bean>	
+		<!-- 保存修改EmpCheckLogEmail -->
+		<bean id="saveOrUpdateEmpCheckLogEmailAction" class="com.emplog.action.empCheckLogEmail.SaveOrUpdateEmpCheckLogEmailAction" scope="prototype">
+		    <property name="service" ref="empCheckLogEmailService"></property>
+		</bean>	
+		<bean id="removeEmpCheckLogEmailAction" class="com.emplog.action.empCheckLogEmail.RemoveEmpCheckLogEmailAction" scope="prototype">
+		    <property name="service" ref="empCheckLogEmailService"></property>
+		</bean>	
+		
+		<!-- logMessage -->
+		<bean id="saveLogMessageAction" class="com.emplog.action.logMessage.SaveLogMessageAction" scope="prototype">
+		    <property name="service" ref="logMessageService"></property>
+		</bean>	
+		
+		<!--  
+		<bean id="listLogMessageByLogMessageEmpIdAction" class="com.emplog.action.logMessage.ListLogMessageByLogMessageEmpIdAction" scope="prototype">
+		    <property name="service" ref="logMessageService"></property>
+		</bean>	
+		-->
+		<bean id="listLogMessageByLogMessageEmpIdPagingAction" class="com.emplog.action.logMessage.ListLogMessageByLogMessageEmpIdPagingAction" scope="prototype">
+		    <property name="service" ref="logMessageService"></property>
+		</bean>	
+		
+		<bean id="removeLogMessageAction" class="com.emplog.action.logMessage.RemoveLogMessageAction" scope="prototype">
+		    <property name="service" ref="logMessageService"></property>
+		</bean>	
+		
+		<bean id="findByLogMessageIdAction" class="com.emplog.action.logMessage.FindByLogMessageIdAction" scope="prototype">
+		    <property name="service" ref="logMessageService"></property>
+		</bean>	
+		
+		<bean id="findAllByLogMessageLikeTitleAction" class="com.emplog.action.logMessage.FindAllByLogMessageLikeTitleAction" scope="prototype">
+		    <property name="service" ref="logMessageService"></property>
+		</bean>	
+		
+		<bean id="findAllByLogMessageByStarTiemAndEndTimeAction" class="com.emplog.action.logMessage.FindAllByLogMessageByStarTiemAndEndTimeAction" scope="prototype">
+		    <property name="service" ref="logMessageService"></property>
+		</bean>
+		
+		<!--  receiveLog-->
+		<bean id="saveReceiveLogAction" class="com.emplog.action.receiveLog.SaveReceiveLogAction" scope="prototype">
+		    <property name="service" ref="receiveLogService"></property>
+		</bean>	
+			
+		<!-- mail 到mailPage.jsp页面      测试-->
+		<bean id="mailPageAction" class="com.emplog.action.mail.MailPageAction">
+			<property name="getSetProperties" ref="getSetProperties"></property>
+		</bean>
+		
+		
+		<bean id="mailSenderAction" class="com.emplog.action.mail.MailSenderAction">
+				<!-- 测试多线程发送邮件
+			 <property name="taskExecutor" ref="taskExecutor" />  
+	     	 <property name="sender" ref="mailSender" />   -->
+	     	 <property name="readTxt" ref="readTxt" /> <!-- 注入读取收件人地址txt类 -->
+	     	 <property name="individualiyHtmlTemplate" ref="individualiyHtmlTemplate" /><!-- 注入读取邮件模板类 -->
+	     	 <property name="startMailSender" ref="startMailSender" /><!-- 注入开始发送类 -->
+		</bean>
+		
+		
+
+		
+</beans>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dwr>  
+    <allow>  
+    <!-- dep -->
+      <create creator="spring" javascript="depService">  
+        <!--Spring中托管的bean名字-->  
+        <param name="beanName" value="depService"/>  
+        <!--方法白名单-->  
+        <include method="findAllDep" />  
+      </create>  
+    <!--类型转换器-->  
+    <convert converter="hibernate3" match="com.emplog.bean.Dep">  
+        <!--属性白名单-->  
+        <param name="include" value="depId,depName,dep.emp.empId,dep.emp.empName" /> 
+    </convert> 
+     
+    <!-- emp -->
+    <create creator="spring" javascript="empService">  
+        <!--Spring中托管的bean名字-->  
+        <param name="beanName" value="empService"/>  
+        <!--方法白名单-->  
+        <include method="findEmpsByEmpName"/>  
+        <include method="findEmpsByDepId"/>  
+      </create>  
+    <!--类型转换器-->  
+    <convert converter="hibernate3" match="com.emplog.bean.Emp">  
+        <!--属性白名单-->  
+        <param name="include" value="empId,empName" /> 
+    </convert>   
+    
+    
+     <!-- EmpCheckLogEmailService -->
+    <create creator="spring" javascript="empCheckLogEmailService">  
+        <!--Spring中托管的bean名字-->  
+        <param name="beanName" value="empCheckLogEmailService"/>  
+        <!--方法白名单-->  
+        <include method="findAllByEmpId"/>   
+      </create>  
+    <!--类型转换器-->  
+    <convert converter="hibernate3" match="com.emplog.bean.EmpCheckLogEmail">  
+        <!--属性白名单-->  
+        <param name="include" value="empCheckLogEmailId,empByEmpId,empByCheckEmpId" /> 
+    </convert>   
+    
+    
+    <!-- dwr反向推测试 在线聊天 -->
+    <convert converter="bean" match="com.emplog.util.chat.User"/>
+	<create creator="new" javascript="ChatManager">
+		<param name="class" value="com.emplog.util.chat.ChatManager"/>
+	</create>
+        
+    <!--dwr得到服务器地址 -->    
+	<create creator="new" javascript="getServiceInfo">
+		<param name="class" value="com.emplog.util.springMail.GetServiceInfo"/>
+	</create>
+    </allow>  
+</dwr> 
